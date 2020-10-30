@@ -1,13 +1,12 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-#Steps to run project locally
+# Steps to run project locally
 1) Inside project directory, run `yarn install` or `npm install`
 2) Inside project directory, run `yarn start` or `npm start`
 
 ## Live view
 https://pensive-lumiere-9513a1.netlify.app/
 
-<br />
 <br />
 
 ### Available Scripts
