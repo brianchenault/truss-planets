@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { defaultApiUrl } from '../util';
+import { defaultApiUrl, fixHttp } from '../util';
 
 const useFetchPlanetsData = () => {
   const [apiUrl, setApiUrl] = useState(defaultApiUrl);
@@ -13,7 +13,7 @@ const useFetchPlanetsData = () => {
       setHasFetchError(false);
 
       try {
-        const response = await fetch(apiUrl);
+        const response = await fetch(fixHttp(apiUrl));
         setData(await response.json());
       } catch (e) {
         setHasFetchError(true);

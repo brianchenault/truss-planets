@@ -9,6 +9,7 @@ import {
   ErrorMessage,
   DataSourceLabel,
 } from './styles';
+import { fixHttp } from './util';
 
 const Planets = () => {
   const {
@@ -31,7 +32,7 @@ const Planets = () => {
           <DataSourceLabel>
             Data source:{' '}
             <Link href={apiUrl} target="_blank" rel="noreferrer">
-              {apiUrl}
+              {fixHttp(apiUrl)}
             </Link>
           </DataSourceLabel>
           <Navigation
