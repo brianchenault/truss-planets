@@ -35,14 +35,14 @@ export const formatNumber = num => {
   return arr.reverse().join(' ');
 };
 
-export const getPlanetSurfaceArea = planet => {
+export const getPlanetWaterSurfaceArea = planet => {
   // sanity check - ensure planet is valid input
   if (
     typeof planet !== 'object' ||
     isNaN(parseInt(planet.diameter)) ||
     isNaN(parseInt(planet.surface_water))
   ) {
-    throw new Error('getPlanetSurfaceArea encountered unexpected input');
+    throw new Error('getPlanetWaterSurfaceArea encountered unexpected input');
   }
   // The radius of a sphere is half its diameter.
   const radius = parseInt(planet.diameter) / 2;
@@ -54,10 +54,10 @@ export const getPlanetSurfaceArea = planet => {
 export const handleUnknownValue = val =>
   val !== 'unknown' ? val : UNKNOWN_CHAR;
 
-export const surfaceAreaRenderFn = obj =>
+export const waterSurfaceAreaRenderFn = obj =>
   handleUnknownValue(obj.surface_water) !== UNKNOWN_CHAR &&
   handleUnknownValue(obj.diameter) !== UNKNOWN_CHAR
-    ? formatNumber(getPlanetSurfaceArea(obj))
+    ? formatNumber(getPlanetWaterSurfaceArea(obj))
     : '?';
 
 export const planetDisplayFields = [
@@ -87,6 +87,6 @@ export const planetDisplayFields = [
   },
   {
     name: 'Surface Area Covered By Water',
-    renderFn: surfaceAreaRenderFn,
+    renderFn: waterSurfaceAreaRenderFn,
   },
 ];

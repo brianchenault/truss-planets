@@ -1,9 +1,9 @@
 import {
   fixHttp,
   formatNumber,
-  getPlanetSurfaceArea,
+  getPlanetWaterSurfaceArea,
   handleUnknownValue,
-  surfaceAreaRenderFn,
+  waterSurfaceAreaRenderFn,
 } from '../util';
 
 describe('util->fixHttp', () => {
@@ -34,34 +34,34 @@ describe('util->formatNumber', () => {
   });
 });
 
-describe('util->getPlanetSurfaceArea', () => {
+describe('util->getPlanetWaterSurfaceArea', () => {
   it('should throw error when input is undefined', () => {
     expect(() => {
-      getPlanetSurfaceArea(undefined);
-    }).toThrow('getPlanetSurfaceArea encountered unexpected input');
+      getPlanetWaterSurfaceArea(undefined);
+    }).toThrow('getPlanetWaterSurfaceArea encountered unexpected input');
   });
 
   it('should throw error when input is a string', () => {
     expect(() => {
-      getPlanetSurfaceArea('planet');
-    }).toThrow('getPlanetSurfaceArea encountered unexpected input');
+      getPlanetWaterSurfaceArea('planet');
+    }).toThrow('getPlanetWaterSurfaceArea encountered unexpected input');
   });
 
   it('should throw error when input object is missing expected diameter property', () => {
     expect(() => {
-      getPlanetSurfaceArea({ surface_water: 15 });
-    }).toThrow('getPlanetSurfaceArea encountered unexpected input');
+      getPlanetWaterSurfaceArea({ surface_water: 15 });
+    }).toThrow('getPlanetWaterSurfaceArea encountered unexpected input');
   });
 
   it('should throw error when input object is missing expected surface_water property', () => {
     expect(() => {
-      getPlanetSurfaceArea({ diameter: 15 });
-    }).toThrow('getPlanetSurfaceArea encountered unexpected input');
+      getPlanetWaterSurfaceArea({ diameter: 15 });
+    }).toThrow('getPlanetWaterSurfaceArea encountered unexpected input');
   });
 
   it('should return expected value', () => {
     expect(
-      getPlanetSurfaceArea({ diameter: '12500', surface_water: '40' })
+      getPlanetWaterSurfaceArea({ diameter: '12500', surface_water: '40' })
     ).toBe(196349541);
   });
 });
@@ -76,22 +76,22 @@ describe('util->handleUnknownValue', () => {
   });
 });
 
-describe('util->surfaceAreaRenderFn', () => {
+describe('util->waterSurfaceAreaRenderFn', () => {
   it('should return ? when surface_water is unknown', () => {
     expect(
-      surfaceAreaRenderFn({ surface_water: 'unknown', diameter: '12500' })
+      waterSurfaceAreaRenderFn({ surface_water: 'unknown', diameter: '12500' })
     ).toEqual('?');
   });
 
   it('should return ? when diameter is unknown', () => {
     expect(
-      surfaceAreaRenderFn({ surface_water: '40', diameter: 'unknown' })
+      waterSurfaceAreaRenderFn({ surface_water: '40', diameter: 'unknown' })
     ).toEqual('?');
   });
 
   it('should return expected value when inputs are known', () => {
     expect(
-      surfaceAreaRenderFn({ diameter: '12500', surface_water: '40' })
+      waterSurfaceAreaRenderFn({ diameter: '12500', surface_water: '40' })
     ).toEqual('196 349 541');
   });
 });
