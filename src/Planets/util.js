@@ -14,7 +14,7 @@ const formatNumber = num => {
   let workingLength = copy.length;
 
   // sanity check - return num of not typecast-able
-  if (parseInt(num) === NaN) {
+  if (isNaN(parseInt(num))) {
     return num;
   }
 
