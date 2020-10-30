@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const colors = Object.freeze({
   denim: '#1565c0',
   cobalt: '#0d47a1',
+  white: '#fff',
+  error: '#ff0033',
 });
 
 const Link = styled.a`
@@ -41,7 +43,7 @@ const PlanetsTableCell = styled.td`
 `;
 
 const ErrorMessage = styled.label`
-  color: red;
+  color: ${colors.error};
 `;
 
 const DataSourceLabel = styled.label`
@@ -52,13 +54,13 @@ const DataSourceLabel = styled.label`
 
 const NavigationButton = styled.button`
   padding: 8px 12px;
-  color: #fff;
-  border: 1px solid white;
+  color: ${colors.white};
+  border: 1px solid ${colors.white};
   border-radius: 6px;
   background: ${colors.denim};
   cursor: pointer;
-  transition: background-color 0.5s;
   font-weight: 700;
+  transition: background-color 0.5s;
 
   &:hover,
   &:visited {

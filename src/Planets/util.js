@@ -5,7 +5,7 @@ const UNKNOWN_CHAR = '?';
 export const defaultApiUrl = 'https://swapi.dev/api/planets/';
 export const fixHttp = url => url.replace('http://', 'https://'); // avoid 307s from API
 
-const formatNumber = num => {
+export const formatNumber = num => {
   const arr = [];
   let copy =
     typeof num === 'string'
@@ -13,7 +13,7 @@ const formatNumber = num => {
       : num.toString().slice().trim();
   let workingLength = copy.length;
 
-  // sanity check - return num of not typecast-able
+  // sanity check - return num if not castable
   if (isNaN(parseInt(num))) {
     return num;
   }
@@ -35,7 +35,15 @@ const formatNumber = num => {
   return arr.reverse().join(' ');
 };
 
-const getPlanetSurfaceArea = planet => {
+export const getPlanetSurfaceArea = planet => {
+  // sanity check - ensure planet is valid input
+  if (
+    typeof planet !== 'object' ||
+    isNaN(parseInt(planet.diameter)) ||
+    isNaN(parseInt(planet.surface_water))
+  ) {
+    throw new Error('getPlanetSurfaceArea encountered unexpected input');
+  }
   // The radius of a sphere is half its diameter.
   const radius = parseInt(planet.diameter) / 2;
   // surface area = 4πr(radius)2(squared)
@@ -43,7 +51,14 @@ const getPlanetSurfaceArea = planet => {
   return Math.round(surfaceArea * (parseInt(planet.surface_water) / 100));
 };
 
-const handleUnknownValue = val => (val !== 'unknown' ? val : UNKNOWN_CHAR);
+export const handleUnknownValue = val =>
+  val !== 'unknown' ? val : UNKNOWN_CHAR;
+
+export const surfaceAreaRenderFn = obj =>
+  handleUnknownValue(obj.surface_water) !== UNKNOWN_CHAR &&
+  handleUnknownValue(obj.diameter) !== UNKNOWN_CHAR
+    ? formatNumber(getPlanetSurfaceArea(obj))
+    : '?';
 
 export const planetDisplayFields = [
   {
@@ -72,10 +87,6 @@ export const planetDisplayFields = [
   },
   {
     name: 'Surface Area Covered By Water',
-    renderFn: obj =>
-      handleUnknownValue(obj.surface_water) !== UNKNOWN_CHAR &&
-      handleUnknownValue(obj.diameter) !== UNKNOWN_CHAR
-        ? formatNumber(getPlanetSurfaceArea(obj))
-        : '?',
+    renderFn: surfaceAreaRenderFn,
   },
 ];

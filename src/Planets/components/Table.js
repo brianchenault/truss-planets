@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import orderBy from 'lodash/orderBy';
 import { planetDisplayFields } from '../util';
 import { PlanetsTable, PlanetsTableCell, PlanetsTableHeader } from '../styles';
@@ -28,4 +28,4 @@ const Table = ({ data }) => (
   </PlanetsTable>
 );
 
-export default Table;
+export default memo(Table); // avoid unnecessary render on navigation state change

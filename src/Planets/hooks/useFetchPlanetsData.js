@@ -4,7 +4,7 @@ import { defaultApiUrl, fixHttp } from '../util';
 const useFetchPlanetsData = () => {
   const [apiUrl, setApiUrl] = useState(defaultApiUrl);
   const [data, setData] = useState([]);
-  const [isFetchingData, setIsFetchingData] = useState(false);
+  const [isFetchingData, setIsFetchingData] = useState(true);
   const [hasFetchError, setHasFetchError] = useState(false);
 
   useEffect(() => {
