@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
-import orderBy from 'lodash/orderBy';
+import PropTypes from 'prop-types';
+import { orderBy } from 'lodash';
 import { planetDisplayFields } from '../util';
 import { PlanetsTable, PlanetsTableCell, PlanetsTableHeader } from '../styles';
 
-const Table = ({ data }) => (
+const Table = ({ planets }) => (
   <PlanetsTable>
     <thead>
       <tr>
@@ -15,7 +16,7 @@ const Table = ({ data }) => (
       </tr>
     </thead>
     <tbody>
-      {orderBy(data.results, ['name']).map((planet, planetIndex) => (
+      {orderBy(planets, ['name']).map((planet, planetIndex) => (
         <tr key={`planet-tr-${planetIndex}`}>
           {planetDisplayFields.map((field, index) => (
             <PlanetsTableCell key={`planet-td-${index}`}>
@@ -27,5 +28,9 @@ const Table = ({ data }) => (
     </tbody>
   </PlanetsTable>
 );
+
+Table.propTypes = {
+  planets: PropTypes.array.isRequired,
+};
 
 export default memo(Table); // avoid unnecessary render on navigation state change

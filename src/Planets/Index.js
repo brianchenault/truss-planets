@@ -28,7 +28,7 @@ const Planets = () => {
         <label>Please wait while planet data is fetched...</label>
       ) : !hasFetchError ? (
         <PlanetsTableWrapper>
-          <Table data={data} />
+          <Table planets={data.results} />
           <DataSourceLabel>
             Data source:{' '}
             <Link href={apiUrl} target="_blank" rel="noreferrer">

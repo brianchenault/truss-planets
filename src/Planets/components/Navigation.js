@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { NavigationButton } from '../styles';
 
 const Navigation = ({ data, onNextClick, onPreviousClick }) => (
@@ -15,5 +16,11 @@ const Navigation = ({ data, onNextClick, onPreviousClick }) => (
     )}
   </div>
 );
+
+Navigation.propTypes = {
+  data: PropTypes.object.isRequired,
+  onPreviousClick: PropTypes.func.isRequired,
+  onNextClick: PropTypes.func.isRequired,
+};
 
 export default Navigation;

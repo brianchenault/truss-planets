@@ -26,6 +26,7 @@ const PlanetsTableWrapper = styled.div`
 `;
 
 const PlanetsTable = styled.table`
+  width: 100%;
   background: white;
   border-collapse: collapse;
 `;

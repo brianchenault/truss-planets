@@ -3,7 +3,11 @@ import { defaultApiUrl, fixHttp } from '../util';
 
 const useFetchPlanetsData = () => {
   const [apiUrl, setApiUrl] = useState(defaultApiUrl);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    results: [],
+    previous: null,
+    next: null,
+  });
   const [isFetchingData, setIsFetchingData] = useState(true);
   const [hasFetchError, setHasFetchError] = useState(false);
 
