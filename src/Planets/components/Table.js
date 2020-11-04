@@ -9,7 +9,7 @@ const Table = ({ planets }) => (
     <thead>
       <tr>
         {planetDisplayFields.map((field, index) => (
-          <PlanetsTableHeader key={`planet-th-${index}`}>
+          <PlanetsTableHeader key={`planet-${index}-th`}>
             {field.name}
           </PlanetsTableHeader>
         ))}
@@ -17,9 +17,9 @@ const Table = ({ planets }) => (
     </thead>
     <tbody>
       {orderBy(planets, ['name']).map((planet, planetIndex) => (
-        <tr key={`planet-tr-${planetIndex}`}>
+        <tr key={`planet-${planetIndex}-tr`}>
           {planetDisplayFields.map((field, index) => (
-            <PlanetsTableCell key={`planet-td-${index}`}>
+            <PlanetsTableCell key={`planet-${planetIndex}-td-${index}`}>
               {field.renderFn(planet)}
             </PlanetsTableCell>
           ))}
