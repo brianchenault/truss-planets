@@ -1,26 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NavigationButton } from '../styles';
+import { NavigationButton, NavigationButtonWrapper } from '../styles';
 
-const Navigation = ({ data, onNextClick, onPreviousClick }) => (
-  <div>
-    {data.previous && (
-      <NavigationButton style={{ float: 'left' }} onClick={onPreviousClick}>
-        Previous
-      </NavigationButton>
-    )}
-    {data.next && (
-      <NavigationButton style={{ float: 'right' }} onClick={onNextClick}>
-        Next
-      </NavigationButton>
-    )}
-  </div>
-);
+const Navigation = ({ next, onLoadMoreClick }) =>
+  next ? (
+    <NavigationButtonWrapper>
+      <NavigationButton onClick={onLoadMoreClick}>Load More</NavigationButton>
+    </NavigationButtonWrapper>
+  ) : null;
 
 Navigation.propTypes = {
-  data: PropTypes.object.isRequired,
-  onPreviousClick: PropTypes.func.isRequired,
-  onNextClick: PropTypes.func.isRequired,
+  next: PropTypes.string,
+  onLoadMoreClick: PropTypes.func.isRequired,
 };
 
 export default Navigation;

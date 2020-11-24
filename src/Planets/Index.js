@@ -2,18 +2,10 @@ import React from 'react';
 import Navigation from './components/Navigation';
 import Table from './components/Table';
 import useFetchPlanetsData from './hooks/useFetchPlanetsData';
-import {
-  Link,
-  PlanetsContainer,
-  PlanetsTableWrapper,
-  ErrorMessage,
-  DataSourceLabel,
-} from './styles';
-import { fixHttp } from './util';
+import { PlanetsContainer, PlanetsTableWrapper, ErrorMessage } from './styles';
 
 const Planets = () => {
   const {
-    apiUrl,
     setApiUrl,
     isFetchingData,
     hasFetchError,
@@ -29,18 +21,9 @@ const Planets = () => {
       ) : !hasFetchError ? (
         <PlanetsTableWrapper>
           <Table planets={data.results} />
-          <DataSourceLabel>
-            Data source:{' '}
-            <Link href={apiUrl} target="_blank" rel="noreferrer">
-              {fixHttp(apiUrl)}
-            </Link>
-          </DataSourceLabel>
           <Navigation
-            data={data}
-            onPreviousClick={() => {
-              setApiUrl(data.previous);
-            }}
-            onNextClick={() => {
+            next={data.next}
+            onLoadMoreClick={() => {
               setApiUrl(data.next);
             }}
           />

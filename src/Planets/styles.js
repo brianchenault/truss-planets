@@ -25,19 +25,7 @@ const PlanetsTableWrapper = styled.div`
   flex-direction: column;
 `;
 
-const PlanetsTable = styled.table`
-  width: 100%;
-  background: white;
-  border-collapse: collapse;
-`;
-
 const PlanetsTableHeader = styled.th`
-  padding: 6px 10px;
-  border: 1px solid gray;
-  text-align: left;
-`;
-
-const PlanetsTableCell = styled.td`
   padding: 6px 10px;
   border: 1px solid gray;
   text-align: left;
@@ -45,12 +33,6 @@ const PlanetsTableCell = styled.td`
 
 const ErrorMessage = styled.label`
   color: ${colors.error};
-`;
-
-const DataSourceLabel = styled.label`
-  margin: 10px 0 20px;
-  font-size: 10px;
-  font-style: italic;
 `;
 
 const NavigationButton = styled.button`
@@ -69,14 +51,18 @@ const NavigationButton = styled.button`
   }
 `;
 
+const NavigationButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
 export {
-  DataSourceLabel,
   ErrorMessage,
   Link,
   NavigationButton,
+  NavigationButtonWrapper,
   PlanetsContainer,
   PlanetsTableWrapper,
-  PlanetsTable,
-  PlanetsTableCell,
   PlanetsTableHeader,
 };

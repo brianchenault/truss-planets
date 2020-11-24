@@ -18,7 +18,9 @@ const useFetchPlanetsData = () => {
 
       try {
         const response = await fetch(fixHttp(apiUrl));
-        setData(await response.json());
+        const responseJson = await response.json();
+        responseJson.results = [...data.results, ...responseJson.results]; // merge fetched results in
+        setData(responseJson);
       } catch (e) {
         setHasFetchError(true);
       } finally {
@@ -28,6 +30,10 @@ const useFetchPlanetsData = () => {
 
     fetchPlanets();
   }, [apiUrl]);
+
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
 
   return {
     apiUrl,

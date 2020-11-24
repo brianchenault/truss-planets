@@ -1,17 +1,15 @@
 import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { orderBy } from 'lodash';
+import { Table as PlanetsTable } from '@trussworks/react-uswds';
 import { planetDisplayFields } from '../util';
-import { PlanetsTable, PlanetsTableCell, PlanetsTableHeader } from '../styles';
 
 const Table = ({ planets }) => (
-  <PlanetsTable>
+  <PlanetsTable bordered>
     <thead>
       <tr>
         {planetDisplayFields.map((field, index) => (
-          <PlanetsTableHeader key={`planet-${index}-th`}>
-            {field.name}
-          </PlanetsTableHeader>
+          <th key={`planet-${index}-th`}>{field.name}</th>
         ))}
       </tr>
     </thead>
@@ -19,9 +17,9 @@ const Table = ({ planets }) => (
       {orderBy(planets, ['name']).map((planet, planetIndex) => (
         <tr key={`planet-${planetIndex}-tr`}>
           {planetDisplayFields.map((field, index) => (
-            <PlanetsTableCell key={`planet-${planetIndex}-td-${index}`}>
+            <td key={`planet-${planetIndex}-td-${index}`}>
               {field.renderFn(planet)}
-            </PlanetsTableCell>
+            </td>
           ))}
         </tr>
       ))}
